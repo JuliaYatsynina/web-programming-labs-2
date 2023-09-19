@@ -1,4 +1,4 @@
-from flask import Flask, redirect
+from flask import Flask, redirect, url_for
 app=Flask(__name__)
 
 @app.route("/")
@@ -57,3 +57,26 @@ def lab1():
     </body>
 </html>
 """
+
+@app.route('/lab1/dub')
+def dub():
+    return '''
+<!doctype html>
+<html>
+    <head>
+        <title>Яцынина Юлия Сергеевна, лабораторная 1</title>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 1
+        </header>
+
+        <link rel="stylesheet" href="''' +url_for('static', filename='lab1.css')+ '''">
+        <h1>Дуб</h1>
+        <img src="''' + url_for('static', filename='dub.jpg')+'''">
+        <footer>
+            &copy; Юлия Яцынина, ФБИ-14, 3 курс, 2023
+        </footer>
+    </body>
+</html>
+'''
