@@ -21,7 +21,7 @@ def menu():
         </header>
         <h2>Меню</h2>
         <ol>
-            <li><h3><a href="/lab1">Лабораторная работа 1</a></h3></li>
+            <li><h3><a href="/lab">Лабораторная работа 1</a></h3></li>
         </ol>
         <footer>
             &copy; Юлия Яцынина, ФБИ-14, 3 курс, 2023
@@ -30,7 +30,7 @@ def menu():
 </html>
 '''
 
-@app.route("/lab1")
+@app.route("/lab")
 def lab1():
     return '''
 <!doctype html>
@@ -195,3 +195,11 @@ def golub():
     </body>
 </html>
 '''
+
+@app.route("/lab2/example")
+def example():
+    name= 'Яцынина Юлия'
+    group = 'ФБИ-14'
+    num=3
+    n=2
+    return render_template('example.html', name=name, group=group, num=num, n=n)
