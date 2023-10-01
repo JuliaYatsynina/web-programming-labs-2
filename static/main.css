@@ -1,0 +1,33 @@
+body{
+    background-color: rgb(84, 104, 148);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+}
+
+p{
+    text-indent: 2pc;
+}
+
+
+img{
+    width: 800px;
+    height: auto;
+    margin-left: 220px;
+}
+
+h1{
+    text-align: center;
+}
+
+header{
+    font-size: 18px;
+    color: azure;
+}
+
+footer{
+    margin-top: 20px;
+    font-size: 18px;
+    color: azure;
+}
+
