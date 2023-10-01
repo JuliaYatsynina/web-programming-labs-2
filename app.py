@@ -30,10 +30,6 @@ def menu():
 </html>
 '''
 
-@app.route("/lab2/example")
-def example():
-    return render_template('example.html')
-
 @app.route("/lab1")
 def lab1():
     return '''
