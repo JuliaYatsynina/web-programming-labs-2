@@ -24,12 +24,18 @@
 
         <p>45<sup>8</sup> = {{45**8}}</p>
 
+        <p>Фрукты:</p>
         <ul>
             {% for f in fruits %}
             <li>{{ f.name }}: {{ f.price }} &#x20bd</li>
             {% endfor %}
         </ul>
-
+        <p>Книги:</p>
+        <ol>
+            {% for a in books %}
+            <li>Автор: {{ a.aut }}, Название: {{ a.naz }}, Жанр: {{ a.ganr}}, Количество страниц: {{ a.str}} </li>
+            {% endfor %}
+        </ol>
 
     </main>
 
