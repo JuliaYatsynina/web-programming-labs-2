@@ -198,8 +198,14 @@ def golub():
 
 @app.route("/lab2/example")
 def example():
-    name= 'Яцынина Юлия'
-    group = 'ФБИ-14'
-    num=3
-    n=2
-    return render_template('example.html', name=name, group=group, num=num, n=n)
+    name, group, num, n= 'Яцынина Юлия', 'ФБИ-14', 3, 2
+  
+    fruits=[
+        {'name':'Лимон', 'price': 70},
+        {'name':'Яблоко', 'price': 150}, 
+        {'name':'Апельсин', 'price': 120}, 
+        {'name':'Дыня', 'price': 300},
+        {'name':'Арбуз', 'price': 350}
+    ]
+    return render_template('example.html',
+                           name=name, group=group, num=num, n=n, fruits=fruits)
