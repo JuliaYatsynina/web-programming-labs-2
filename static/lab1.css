@@ -10,15 +10,15 @@ p{
 }
 
 .gol{
-    width: 400px;
+    width: 500px;
     height: auto;
-    margin-left: 420px;
+    margin-left: 650px;
 }
 
 img{
     width: 800px;
     height: auto;
-    margin-left: 220px;
+    margin-left: 560px;
 }
 
 h1{
@@ -39,5 +39,5 @@ footer{
 .python{
     width: 300px;
     height: auto;
-    margin-left: 450px;  
+    margin-left: 800px;  
 }
