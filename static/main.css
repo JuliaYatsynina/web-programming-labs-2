@@ -31,3 +31,6 @@ footer{
     color: azure;
 }
 
+.error{
+    color: rgb(255, 0, 0);
+}
