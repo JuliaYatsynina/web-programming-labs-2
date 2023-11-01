@@ -40,8 +40,8 @@ def ice():
     
     temperature = request.form.get('temperature')
     error = ''
-    message = ''  # Начальное значение для переменной message
-    snowflakes = ''  # Начальное значение для переменной snowflakes
+    message = ''  # Начальное значение
+    snowflakes = ''  
     
     if temperature is None or temperature == '':
         error = 'ошибка: не задана температура'
@@ -109,7 +109,7 @@ def cookies():
     back = request.form.get('back') 
     font = request.form.get('font') 
     if color == back: 
-        error_msg = 'Цвет текста и фона одинаковые, выберите разные цвета' 
+        error_msg = 'Цвет текста и фона одинаковые, выберите разные цвета!' 
         return render_template('error.html', error_msg=error_msg) 
     headers = { 
         'Set-Cookie': [ 
