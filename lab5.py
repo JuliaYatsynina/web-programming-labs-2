@@ -5,7 +5,7 @@ import psycopg2
 lab5 =Blueprint('lab5',__name__)
 
 def dBConnect():
-    conn = psycopg2.connect(
+    conn = psycopg2.connect( #параметры подключения к бд
         host="127.0.0.1",
         database = "knowledge_base_for_julia",
         user = "julia_knowledge_base",
@@ -58,7 +58,7 @@ def user():
         port = 5434
     )
     cur = conn.cursor() #создает курсор, привязанный к соединению (conn), которое уже было установлено с базой данных 
-    cur.execute("SELECT * FROM users;")
+    cur.execute("SELECT * FROM users;")# запрос, который курсор должен выполнить
     result = cur.fetchall()
     return render_template('lab5users.html', users=result)
 
@@ -66,20 +66,21 @@ def user():
 @lab5.route('/lab5/register', methods=['GET', 'POST'])
 def registerPage():
     errors = []
-
+    # если это метод get, то возвращается в шаблон
     if request.method == 'GET':
         return render_template('register.html', errors=errors)
-
+    # если попадаем сюда, то это уже метод post,
+    # так как get мы уже обработали
     username = request.form.get('username')
     password = request.form.get('password')
-
+    # если поля пустые, то выдается ошибка
     if not (username and password):
         errors.append("Пожалуйста, заполните все поля")
         print(errors)
         return render_template('register.html', errors=errors)
 
     hashPassword = generate_password_hash(password)
-
+    
     conn = dBConnect() #вызывается функция dBConnect() для установления соединения (conn) с базой данных.
     cur = conn.cursor()
     cur.execute(f"SELECT username FROM users WHERE username = '{username}';") #это SQL-запрос, который выбирает поле username из 
@@ -126,6 +127,7 @@ def loginPage():
     
     userID, hashPassword = result
     if check_password_hash(hashPassword, password):
+        # пароль верный, сохранение id, username
         session['id'] = userID
         session['username'] = username
         conn.close()  # Закрытие соединения
@@ -138,9 +140,9 @@ def loginPage():
 @lab5.route("/lab5/new_article", methods=["GET", "POST"])
 def createArticle():
     errors = []
-    userID = session.get("id")
+    userID = session.get("id")#проверка авторизации
 
-    if userID is not None:
+    if userID is not None:#авторизация пройдена
         if request.method == "GET":
             return render_template("new_article.html")
         
@@ -162,28 +164,29 @@ def createArticle():
         dBClose(cur,conn)
 
         return redirect(f"/lab5/articles/{new_article_id}")
-    return redirect("/lab5/login")
+    return redirect("/lab5/login")#пользователь не авторизован, перенаправление на вход
 
 
 @lab5.route("/lab5/articles/<string:article_id>")
-def getArticle(article_id):
+def getArticle(article_id):#эта конструкция позволяет получить это значение в роуте
+    #если article_id 23, то будет прописан /lab5/articles/23>
     userID = session.get("id")
 
-    if userID is not None:
+    if userID is not None:#проверка авторизации
         conn = dBConnect()
         cur = conn.cursor()
 
         cur.execute("SELECT title, article_text FROM articles WHERE id = %s and user_id = %s", (article_id, userID))
-
+        #команда - взять одну строку
         articleBody = cur.fetchone()
 
         dBClose(cur, conn)
 
         if articleBody is None:
             return "Not found!"
-        
-        text = articleBody[1].splitlines()
-
+        #разбиваем
+        text = articleBody[1].splitlines()#splitlines() является методом строки,
+        #который разделяет строку на список подстрок 
         return render_template("articleN.html", article_text=text,
         article_title=articleBody[0], username=session.get("username"))
 
@@ -192,8 +195,9 @@ def getArticle(article_id):
 def getArticleList():
     userID = session.get("id")
     username = session.get("username")
-    articles_list = "Нет статей"
-    if userID is not None:
+    if userID is None:
+        articles_list = []
+    else:
         conn = dBConnect()
         cur = conn.cursor()
         
