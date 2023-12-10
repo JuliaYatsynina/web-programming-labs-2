@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%if name %}
+        {{ name }} 
+    {%else %}
+        Анонимус,
+    {% endif %}. Лабораторная работа {{n}}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+</head>
+<body>
+    <header>
+        WEB-программирование, часть 2. {% if n %}Лабораторная работа 2 {% endif %}
+    </header>
+
+    <main>
+        <p>5 + 2 = {{ 5 + 2 }}</p> 
+
+        <p>11 * 28 = {{11 * 28 }}</p>
+
+        <p>8452/793={{8452/793}}</p>
+
+        <p>45<sup>8</sup> = {{45**8}}</p>
+
+        <p>Фрукты:</p>
+        <ul>
+            {% for f in fruits %}
+            <li>{{ f.name }}: {{ f.price }} &#x20bd</li>
+            {% endfor %}
+        </ul>
+        <p>Книги:</p>
+        <ol>
+            {% for a in books %}
+            <li>Автор: {{ a.aut }}, Название: {{ a.naz }}, Жанр: {{ a.ganr}}, Количество страниц: {{ a.str}} </li>
+            {% endfor %}
+        </ol>
+
+    </main>
+
+    <footer>
+        &copy; 
+        {%if name %}
+            {{ name }},
+        {%else %}
+            Анонимус,
+        {% endif %}
+
+        {%if group %}
+            {{ group }}, 
+        {%else %}
+            ERROR,
+        {% endif %}
+
+        {%if num %}
+            {{ num }} 
+        {%else %}
+            Ноль
+        {% endif %}
+         курс, 2023
+    </footer>
+</body>
+</html>
