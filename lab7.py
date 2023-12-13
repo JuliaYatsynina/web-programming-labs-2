@@ -8,7 +8,7 @@ def main():
     return render_template('lab7/index.html')
 
 
-@lab7.route('/lab7/drink/')
+@lab7.route('/lab7/drink')
 def drink():
     return render_template('lab7/drink.html')
 
