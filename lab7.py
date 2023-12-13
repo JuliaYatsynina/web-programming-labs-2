@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, abort
 
 lab7 = Blueprint('lab7',__name__)
 
@@ -38,7 +38,8 @@ def api():
         else:
             return {"result": None, "error": "Оплата еще не выполнена"}
     
-    abort(400)
+    abort(400) #И в конце обработаем ситуацию, если вдруг прилетел нестандартный метод
+                #– просто вернём код 400:
 
 def get_price(params):
     return {'result': calculate_price(params), "error": None}

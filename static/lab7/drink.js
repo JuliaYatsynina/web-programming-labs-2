@@ -1,7 +1,7 @@
 function getPrice() {
     const milk = document.querySelector('[name=milk]').checked;
     const sugar = document.querySelector('[name=sugar]').checked;
-    const drink = document.querySelector('[name=drink]:checked') ? document.querySelector('[name=drink]:checked').value : '';
+    const drink = document.querySelector('[name=drink]:checked').value;
 
     const obj = {
         "method": "get-price",
@@ -25,6 +25,8 @@ function getPrice() {
         document.querySelector('#pay').style.display = 'block';
     })
 }
+
+
 function pay() {
     const card_num = document.querySelector('[name=card]').value;
     const cvv = document.querySelector('[name=cvv]').value;
