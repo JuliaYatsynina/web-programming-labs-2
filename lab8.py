@@ -14,8 +14,7 @@ courses = [
     {"name": "c#", "videos": 8, "created_date": datetime.now()}
 ]
 
-#Здесь мы определяем, что у нас будет специальный путь, по которому будет
-#"жить" API
+
 #здесь список курсов
 @lab8.route('/lab8/api/courses/', methods=['GET']) 
 def get_courses():
