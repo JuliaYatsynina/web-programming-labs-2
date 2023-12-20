@@ -17,7 +17,7 @@ courses = [
 #Здесь мы определяем, что у нас будет специальный путь, по которому будет
 #"жить" API
 #здесь список курсов
-@lab8.route('/lab8/api/courses/', methods=['GET'])
+@lab8.route('/lab8/api/courses/', methods=['GET']) 
 def get_courses():
     return jsonify(courses)
 
@@ -42,6 +42,7 @@ def del_course(course_num):
 @lab8.route('/lab8/api/courses/<int:course_num>', methods=['PUT'])
 def put_course(course_num):
     course = request.get_json()
+    course["created_date"] = datetime.now()
     if course_num < 0 or course_num >= len(courses):
         abort(404) 
     courses[course_num] = course
